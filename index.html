@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kentucky V Launcher</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      background: #0a0e1a url('assets/background.jpg') center/cover no-repeat fixed;
+      color: #ffffff;
+      overflow: hidden;
+      height: 100vh;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    /* ...большой CSS блок, полный код выше... */
+  </style>
+</head>
+<body>
+  <!-- Titlebar -->
+  <div class="titlebar">
+    <div class="titlebar-title">
+      <span>🎮</span> KENTUCKY V LAUNCHER
+    </div>
+    <div class="titlebar-buttons">
+      <button class="titlebar-btn minimize" onclick="minimizeWindow()">─</button>
+      <button class="titlebar-btn maximize" onclick="maximizeWindow()">□</button>
+      <button class="titlebar-btn close" onclick="closeWindow()">✕</button>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">KENTUCKY</div>
+      <div class="nav-item active" onclick="showSection('home')">
+        <span class="nav-icon">🏠</span>
+        <span>Главная</span>
+      </div>
+      <div class="nav-item" onclick="showSection('news')">
+        <span class="nav-icon">📰</span>
+        <span>Новости</span>
+      </div>
+      <div class="nav-item" onclick="showSection('settings')">
+        <span class="nav-icon">⚙️</span>
+        <span>Настройки</span>
+      </div>
+      <div class="nav-item" onclick="showSection('about')">
+        <span class="nav-icon">ℹ️</span>
+        <span>О проекте</span>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div class="content">
+        <!-- Home Section -->
+        <div class="content-section active" id="home">
+          <div class="server-card">
+            <div class="server-header">
+              <h1 class="server-title">Kentucky V RolePlay</h1>
+              <div class="server-status">
+                <div class="status-dot"></div>
+                <span>Сервер онлайн</span>
+              </div>
+            </div>
+            
+            <div class="server-info">
+              <div class="info-box">
+                <div class="info-label">Игроков онлайн</div>
+                <div class="info-value" id="online-count">245</div>
+              </div>
+              <div class="info-box">
+                <div class="info-label">Максимум</div>
+                <div class="info-value">500</div>
+              </div>
+              <div class="info-box">
+                <div class="info-label">Пинг</div>
+                <div class="info-value" id="ping">25 ms</div>
+              </div>
+            </div>
+
+            <button class="launch-button" onclick="launchGame()">
+              🎮 Запустить игру
+            </button>
+          </div>
+
+          <div class="server-card">
+            <h2 style="margin-bottom: 20px; color: #ff6b00;">📋 Быстрые ссылки</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+              <button style="padding: 15px; background: rgba(114, 137, 218, 0.2); border: 1px solid #7289da; border-radius: 8px; color: #fff; cursor: pointer; font-size: 16px; transition: all 0.3s;" onclick="openLink('https://discord.gg/kentucky')">
+                💬 Discord
+              </button>
+              <button style="padding: 15px; background: rgba(0, 119, 255, 0.2); border: 1px solid #0077ff; border-radius: 8px; color: #fff; cursor: pointer; font-size: 16px; transition: all 0.3s;" onclick="openLink('https://vk.com/kentuckyv')">
+                🌐 VK
+              </button>
+              <button style="padding: 15px; background: rgba(255, 107, 0, 0.2); border: 1px solid #ff6b00; border-radius: 8px; color: #fff; cursor: pointer; font-size: 16px; transition: all 0.3s;" onclick="openLink('https://kentuckyv.ru/forum')">
+                📖 Форум
+              </button>
+              <button style="padding: 15px; background: rgba(46, 204, 113, 0.2); border: 1px solid #2ecc71; border-radius: 8px; color: #fff; cursor: pointer; font-size: 16px; transition: all 0.3s;" onclick="openLink('https://kentuckyv.ru/donate')">
+                💎 Донат
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- News Section -->
+        <div class="content-section" id="news">
+          <h1 style="margin-bottom: 25px; color: #ff6b00;">📰 Новости проекта</h1>
+          
+          <div class="news-item">
+            <div class="news-title">Обновление 1.5 - Новая система бизнеса</div>
+            <div class="news-date">29 ноября 2024</div>
+            <div class="news-text">
+              Добавлена новая система управления бизнесом с расширенными возможностями. 
+              Теперь владельцы могут нанимать сотрудников, устанавливать зарплаты и отслеживать статистику.
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-title">Черная пятница - скидки до 50%</div>
+            <div class="news-date">24 ноября 2024</div>
+            <div class="news-text">
+              С 24 по 30 ноября действуют специальные скидки на донат-валюту и премиум аккаунты!
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-title">Новые локации на карте</div>
+            <div class="news-date">15 ноября 2024</div>
+            <div class="news-text">
+              Добавлено 5 новых уникальных локаций для взаимодействия: подпольное казино, секретный склад, 
+              VIP клуб и многое другое.
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="content-section" id="settings">
+          <h1 style="margin-bottom: 25px; color: #ff6b00;">⚙️ Настройки</h1>
+          
+          <div class="setting-item">
+            <div class="setting-label">Автозапуск лаунчера</div>
+            <div class="toggle-switch" onclick="toggleSetting(this)">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label">Discord Rich Presence</div>
+            <div class="toggle-switch active" onclick="toggleSetting(this)">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label">Проверять обновления автоматически</div>
+            <div class="toggle-switch active" onclick="toggleSetting(this)">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label">Уведомления о новостях</div>
+            <div class="toggle-switch active" onclick="toggleSetting(this)">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="content-section" id="about">
+          <h1 style="margin-bottom: 25px; color: #ff6b00;">ℹ️ О проекте</h1>
+          
+          <div class="server-card">
+            <h2 style="color: #ff6b00; margin-bottom: 15px;">Kentucky V RolePlay</h2>
+            <p style="color: #ccc; line-height: 1.8; margin-bottom: 20px;">
+              Kentucky V - это уникальный RolePlay сервер для GTA 5 на платформе RAGE Multiplayer. 
+              Мы предлагаем максимально реалистичный игровой процесс с продуманной экономикой, 
+              разнообразными работами и увлекательными системами взаимодействия.
+            </p>
+            
+            <h3 style="color: #ff6b00; margin: 20px 0 10px;">Наши преимущества:</h3>
+            <ul style="color: #ccc; line-height: 2; padding-left: 20px;">
+              <li>✅ Стабильная работа сервера 24/7</li>
+              <li>✅ Уникальные системы и скрипты</li>
+              <li>✅ Адекватная администрация</li>
+              <li>✅ Регулярные обновления</li>
+              <li>✅ Активное комьюнити</li>
+            </ul>
+          </div>
+
+          <div class="server-card" style="margin-top: 20px;">
+            <h3 style="color: #ff6b00; margin-bottom: 15px;">Техническая информация</h3>
+            <p style="color: #888; font-size: 14px;">
+              Версия лаунчера: 1.0.0<br>
+              RAGE MP версия: 1.1<br>
+              IP сервера: 185.169.134.78:22005
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="openLink('https://kentuckyv.ru'); return false;">Сайт</a>
+          <a href="#" class="footer-link" onclick="openLink('https://kentuckyv.ru/rules'); return false;">Правила</a>
+          <a href="#" class="footer-link" onclick="openLink('https://kentuckyv.ru/support'); return false;">Поддержка</a>
+        </div>
+        <div class="version">v1.0.0</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    const SERVER_IP = '185.169.134.78:22005'; // Замените на свой IP
+
+    // Window controls
+    function minimizeWindow() {
+      ipcRenderer.send('minimize-window');
+    }
+
+    function maximizeWindow() {
+      ipcRenderer.send('maximize-window');
+    }
+
+    function closeWindow() {
+      ipcRenderer.send('close-window');
+    }
+
+    // Navigation
+    function showSection(sectionId) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      document.getElementById(sectionId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Launch game
+    function launchGame() {
+      ipcRenderer.send('launch-game', SERVER_IP);
+      
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '⏳ Запуск...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }, 3000);
+    }
+
+    // Open external links
+    function openLink(url) {
+      ipcRenderer.send('open-external', url);
+    }
+
+    // Toggle settings
+    function toggleSetting(element) {
+      element.classList.toggle('active');
+    }
+
+    // Update server stats (mock data)
+    function updateServerStats() {
+      const online = Math.floor(Math.random() * 50) + 200;
+      const ping = Math.floor(Math.random() * 20) + 15;
+      
+      document.getElementById('online-count').textContent = online;
+      document.getElementById('ping').textContent = ping + ' ms';
+    }
+
+    // Update stats every 30 seconds
+    setInterval(updateServerStats, 30000);
+  </script>
+</body>
+</html>
