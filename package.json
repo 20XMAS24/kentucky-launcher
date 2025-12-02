@@ -1,0 +1,29 @@
+{
+  "name": "kentucky-launcher",
+  "version": "1.0.0",
+  "description": "Kentucky V RAGE MP Server Launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": ["rage-mp", "gta5", "launcher", "kentucky"],
+  "author": "Kentucky V Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.kentucky.launcher",
+    "productName": "Kentucky Launcher",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
